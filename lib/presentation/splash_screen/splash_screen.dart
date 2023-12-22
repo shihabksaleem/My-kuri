@@ -10,11 +10,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // Future.delayed(Duration(seconds: 3)).then((value) => Navigator.push(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => GetStartedScreen(),
-    //     )));
+    Future.delayed(Duration(seconds: 3)).then((value) => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GetStartedScreen(),
+        )));
     super.initState();
   }
 
@@ -25,11 +25,14 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(),
-          Center(
-            child: SizedBox(
-              height: 150,
-              width: 150,
-              child: SvgPicture.asset("assets/images/logo.svg"),
+          Hero(
+            tag: 'logo',
+            child: Center(
+              child: SizedBox(
+                height: 150,
+                width: 150,
+                child: SvgPicture.asset("assets/images/logo.svg"),
+              ),
             ),
           ),
           Column(
