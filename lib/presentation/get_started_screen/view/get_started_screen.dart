@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/core/text_constant/text_constant.dart';
+import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -40,16 +41,27 @@ class GetStartedScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      color: ColorConstant.mykuriPrimaryBlue,
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Register your account".toUpperCase(),
-                        style: TextStyle(color: ColorConstant.mykuriWhite),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegistrationScreen(),
+                          ));
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: ColorConstant.mykuriPrimaryBlue,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Register your account".toUpperCase(),
+                          style: TextStyle(
+                              color: ColorConstant.mykuriWhite,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -65,7 +77,9 @@ class GetStartedScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         "log into your account".toUpperCase(),
-                        style: TextStyle(color: ColorConstant.mykuriTextColor),
+                        style: TextStyle(
+                            color: ColorConstant.mykuriTextColor,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   )
