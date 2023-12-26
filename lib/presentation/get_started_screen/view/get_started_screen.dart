@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
-import 'package:mykuri/core/text_constant/text_constant.dart';
+import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
+
 import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
@@ -66,20 +67,30 @@ class GetStartedScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 5),
-                  Container(
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(
-                        color: ColorConstant.mykuriGrey,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: ColorConstant.mykuriGrey,
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "log into your account".toUpperCase(),
-                        style: TextStyle(
-                            color: ColorConstant.mykuriTextColor,
-                            fontWeight: FontWeight.bold),
+                      child: Center(
+                        child: Text(
+                          "log into your account".toUpperCase(),
+                          style: TextStyle(
+                              color: ColorConstant.mykuriTextColor,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   )

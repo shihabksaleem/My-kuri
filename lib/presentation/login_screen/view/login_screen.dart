@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mykuri/app_config/app_config.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
-import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
-import 'package:mykuri/presentation/otp_screen/view/otp_screen.dart';
+import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 
-class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +28,30 @@ class RegistrationScreen extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text('Registration',
+              Text('Log in to your account',
                   style: TextStyle(
                       fontSize: 35,
                       color: ColorConstant.mykuriPrimaryBlue,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              Text(
-                'Register ${AppConfig.appName} account with your referral code',
-                style: TextStyle(height: 1.5),
-              ),
-              SizedBox(height: 30),
-              RefactoredTextField(
-                name: 'Full Name',
-              ),
-              RefactoredTextField(name: 'Phone number'),
-              RefactoredTextField(name: 'Email'),
-              RefactoredTextField(
-                name: 'Referral code',
-                iseye: true,
-              ),
-              RefactoredTextField(
-                name: 'Password',
-                iseye: true,
-              ),
+              Text("Log into your My Kuri account"),
+              SizedBox(height: 60),
+              RefactoredTextField(name: 'User name/phone number'),
+              RefactoredTextField(name: 'Password'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('Forgot Password ?'),
+                  TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Click here",
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: ColorConstant.mykuriPrimaryBlue),
+                      ))
+                ],
+              )
             ],
           ),
         ),
@@ -65,12 +63,12 @@ class RegistrationScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OtpScreen(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => OtpScreen(),
+                //   ),
+                // );
               },
               child: Container(
                 height: 50,
@@ -90,17 +88,17 @@ class RegistrationScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Do you already have a account?"),
+                Text("Do you not have a account?"),
                 TextButton(
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => RegistrationScreen(),
                         ),
                       );
                     },
-                    child: Text("Login in here"))
+                    child: Text("Register here"))
               ],
             )
           ],
