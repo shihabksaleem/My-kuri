@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
-import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
-import 'package:mykuri/presentation/verify_otp_screen/view/verify_otp.dart';
+import 'package:mykuri/presentation/reset_password_screen/view/reset_password_screen.dart';
+import 'package:pinput/pinput.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+class VerifyotpScreen extends StatelessWidget {
+  const VerifyotpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +29,28 @@ class ForgotPassword extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text('Forgot password?',
+              Text('Verify account',
                   style: TextStyle(
                       fontSize: 35,
                       color: ColorConstant.mykuriPrimaryBlue,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              Text(
-                  "Please enter the CODE sent to your phone number in the boxes below."),
-              SizedBox(height: 30),
-              RefactoredTextField(name: 'Phone number'),
+              Text("Please enter your phone number to recover your password."),
+              SizedBox(height: 70),
+              Center(child: Pinput()),
+              SizedBox(
+                height: 15,
+              ),
+              Center(
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'Resend OTP?',
+                    style: TextStyle(
+                        fontSize: 18, color: ColorConstant.mykuriPrimaryBlue),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -53,7 +65,7 @@ class ForgotPassword extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => VerifyotpScreen(),
+                    builder: (context) => ResetPasswordScreen(),
                   ),
                 );
               },
@@ -64,7 +76,7 @@ class ForgotPassword extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Text(
-                    "recover password".toUpperCase(),
+                    "Verify Phone".toUpperCase(),
                     style: TextStyle(
                         color: ColorConstant.mykuriWhite,
                         fontWeight: FontWeight.bold),

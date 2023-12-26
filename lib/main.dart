@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
 import 'package:mykuri/presentation/splash_screen/splash_screen.dart';
 
 void main() {

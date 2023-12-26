@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
+import 'package:mykuri/presentation/forgot_password_screen/view/forgot_password.dart';
 import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -43,7 +44,13 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Text('Forgot Password ?'),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForgotPassword(),
+                            ));
+                      },
                       child: Text(
                         "Click here",
                         style: TextStyle(

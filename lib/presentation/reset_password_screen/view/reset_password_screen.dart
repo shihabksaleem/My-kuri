@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
-import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
-import 'package:mykuri/presentation/verify_otp_screen/view/verify_otp.dart';
+import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
 
-class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
+import 'package:pinput/pinput.dart';
+
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +30,16 @@ class ForgotPassword extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Text('Forgot password?',
+              Text('Recover password',
                   style: TextStyle(
                       fontSize: 35,
                       color: ColorConstant.mykuriPrimaryBlue,
                       fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
-              Text(
-                  "Please enter the CODE sent to your phone number in the boxes below."),
-              SizedBox(height: 30),
-              RefactoredTextField(name: 'Phone number'),
+              Text("Please enter your new password to continue"),
+              SizedBox(height: 70),
+              RefactoredTextField(name: "New Password"),
+              RefactoredTextField(name: "Repeat password"),
             ],
           ),
         ),
@@ -53,7 +54,7 @@ class ForgotPassword extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => VerifyotpScreen(),
+                    builder: (context) => BottomNavScreen(),
                   ),
                 );
               },
@@ -64,7 +65,7 @@ class ForgotPassword extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Text(
-                    "recover password".toUpperCase(),
+                    "Change password".toUpperCase(),
                     style: TextStyle(
                         color: ColorConstant.mykuriWhite,
                         fontWeight: FontWeight.bold),
