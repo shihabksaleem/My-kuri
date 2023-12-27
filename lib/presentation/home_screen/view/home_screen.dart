@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/core/db/db.dart';
-import 'package:mykuri/presentation/home_screen/view/widgets/payment_card_refactor.dart';
+import 'package:mykuri/presentation/home_screen/view/widgets/planA_payment_card_refactor.dart';
+import 'package:mykuri/presentation/home_screen/view/widgets/planB_payment_card_refactor.dart';
+import 'package:mykuri/presentation/plan_detail_screen/view/plan_detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -191,7 +193,7 @@ class HomeScreen extends StatelessWidget {
                               color: ColorConstant.mykuriWhite),
                         ),
                         Text(
-                          "\$ 4000",
+                          "\$ 40,000",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 30,
@@ -218,31 +220,41 @@ class HomeScreen extends StatelessWidget {
               itemCount: 2,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, mainAxisSpacing: 15, crossAxisSpacing: 15),
-              itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: dbData.myPlanColor[index]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SizedBox(),
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundColor: ColorConstant.mykuriWhite,
-                      child: Icon(
-                        Icons.map,
-                        size: 40,
-                        color: dbData.iconsColor[index],
-                      ),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PlanDetailScreen(),
                     ),
-                    Text(
-                      "Wedding Plan",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: dbData.myPlanColor[index]),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(),
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundColor: ColorConstant.mykuriWhite,
+                        child: Icon(
+                          Icons.map,
+                          size: 40,
+                          color: dbData.iconsColor[index],
+                        ),
                       ),
-                    ),
-                  ],
+                      Text(
+                        "Wedding Plan",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -260,7 +272,9 @@ class HomeScreen extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: PaymentCardRefactor(),
+                child: index % 2 == 00
+                    ? PaymentCardRefactorPlanA()
+                    : PaymentCardRefactorPlanB(),
               ),
             )
           ]),

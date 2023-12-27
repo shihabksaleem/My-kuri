@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 
-class PaymentCardRefactor extends StatelessWidget {
-  const PaymentCardRefactor({super.key});
+class PaymentCardRefactorPlanA extends StatelessWidget {
+  const PaymentCardRefactorPlanA({super.key});
 
   @override
   Widget build(BuildContext context) {
