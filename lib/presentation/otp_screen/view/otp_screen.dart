@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:mykuri/core/constant/color_constant.dart';
-import 'package:mykuri/presentation/terms_and_condirtion_screen.dart/view/terms_and_condition_screen.dart';
+
+import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
@@ -57,11 +58,11 @@ class OtpScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TermsAndCondtions(),
-                ));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => TermsAndCondtions(),
+            //     ));
           },
           child: Container(
             height: 50,
