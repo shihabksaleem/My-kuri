@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/presentation/home_screen/view/home_screen.dart';
+import 'package:mykuri/presentation/profile_screen/view/profile.dart';
+import 'package:mykuri/presentation/wallet_screen/view/wallet_screen.dart';
 
 class BottomNavScreen extends StatefulWidget {
   @override
@@ -8,11 +10,7 @@ class BottomNavScreen extends StatefulWidget {
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
   int selectedIndex = 1;
-  final screens = [
-    Text('wallet'),
-    HomeScreen(),
-    Text('profile'),
-  ];
+  final screens = [WalletScreen(), HomeScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

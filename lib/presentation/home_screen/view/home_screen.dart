@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/core/db/db.dart';
 import 'package:mykuri/presentation/home_screen/view/widgets/planA_payment_card_refactor.dart';
 import 'package:mykuri/presentation/home_screen/view/widgets/planB_payment_card_refactor.dart';
 import 'package:mykuri/presentation/plan_detail_screen/view/plan_detail_screen.dart';
+import 'package:mykuri/presentation/wallet_screen/view/wallet_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -170,40 +172,53 @@ class HomeScreen extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            Container(
-              height: 80,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: ColorConstant.mykuriPrimaryBlue),
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  Image.asset(
-                    "assets/images/wallet_blue.png",
-                    fit: BoxFit.fitHeight,
+            InkWell(
+              onTap: () {
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => WalletScreen(),
+                //   ),
+                // );
+              },
+              child: Hero(
+                tag: 'wallet',
+                child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: ColorConstant.mykuriPrimaryBlue),
+                  width: double.infinity,
+                  child: Stack(
+                    children: [
+                      Image.asset(
+                        "assets/images/wallet_blue.png",
+                        fit: BoxFit.fitHeight,
+                      ),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(
+                              "Wallet",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  color: ColorConstant.mykuriWhite),
+                            ),
+                            Text(
+                              "\$ 40,000",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  color: ColorConstant.mykuriWhite),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          "Wallet",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: ColorConstant.mykuriWhite),
-                        ),
-                        Text(
-                          "\$ 40,000",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 30,
-                              color: ColorConstant.mykuriWhite),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
             SizedBox(height: 20),
