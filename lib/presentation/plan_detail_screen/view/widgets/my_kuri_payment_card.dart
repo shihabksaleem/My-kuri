@@ -9,7 +9,8 @@ class MyKuriPaymentCard extends StatelessWidget {
     return Container(
       height: 80,
       decoration: BoxDecoration(
-          color: Color(0xffD5F6EE), borderRadius: BorderRadius.circular(10)),
+          color: ColorConstant.liteGreenColor,
+          borderRadius: BorderRadius.circular(10)),
       child: Center(
         child: ListTile(
           leading: CircleAvatar(

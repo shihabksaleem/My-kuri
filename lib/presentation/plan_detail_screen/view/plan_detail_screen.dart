@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/presentation/plan_detail_screen/view/widgets/due_card.dart';
 import 'package:mykuri/presentation/plan_detail_screen/view/widgets/my_kuri_payment_card.dart';
 import 'package:mykuri/presentation/plan_detail_screen/view/widgets/payment_details_card.dart';
 import 'package:mykuri/global_widgets/reuseable_title_with_des.dart';
+import 'package:mykuri/presentation/wedding_plan_screen/view/wedding_plans.dart';
 
 class PlanDetailScreen extends StatelessWidget {
   const PlanDetailScreen({super.key});
@@ -36,7 +38,7 @@ class PlanDetailScreen extends StatelessWidget {
                         backgroundColor: ColorConstant.mykuriWhite,
                         child: Icon(
                           Icons.map,
-                          color: Color(0xff16BE81),
+                          color: ColorConstant.GreenColor,
                           size: 30,
                         ),
                       ),
@@ -209,7 +211,16 @@ class PlanDetailScreen extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: 1,
-                  itemBuilder: (context, index) => MyKuriPaymentCard(),
+                  itemBuilder: (context, index) => InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => WeddingPlanScreen(),
+                          ),
+                        );
+                      },
+                      child: MyKuriPaymentCard()),
                 ),
                 SizedBox(height: 20),
                 ReuseableTitileWithDes(
