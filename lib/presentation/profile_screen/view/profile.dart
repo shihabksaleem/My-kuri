@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
+import 'package:mykuri/presentation/edit_profile_screen/view/edit_profile_screen.dart';
 import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
 
 import 'package:mykuri/presentation/profile_screen/view/widgets/profile_detail_card.dart';
@@ -87,15 +88,25 @@ class ProfileScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 60),
-                  height: 40,
-                  child: Center(
-                      child: Text("EDIT",
-                          style: TextStyle(
-                              color: ColorConstant.mykuriWhite,
-                              fontWeight: FontWeight.bold))),
-                  color: ColorConstant.mykuriPrimaryBlue,
+                InkWell(
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfileScreen(),
+                        ),
+                        (route) => false);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 60),
+                    height: 40,
+                    child: Center(
+                        child: Text("EDIT",
+                            style: TextStyle(
+                                color: ColorConstant.mykuriWhite,
+                                fontWeight: FontWeight.bold))),
+                    color: ColorConstant.mykuriPrimaryBlue,
+                  ),
                 ),
                 SizedBox(
                   height: 5,
