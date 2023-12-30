@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mykuri/app_config/app_config.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
+import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
 import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
 import 'package:mykuri/presentation/otp_screen/view/otp_screen.dart';
 
@@ -12,13 +13,21 @@ class RegistrationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: ColorConstant.mykuriWhite,
-        elevation: 0,
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: ColorConstant.mykuriTextColor,
-        ),
-      ),
+          backgroundColor: ColorConstant.mykuriWhite,
+          elevation: 0,
+          leading: InkWell(
+            onTap: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GetStartedScreen(),
+                  ));
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: ColorConstant.mykuriTextColor,
+            ),
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -65,7 +74,7 @@ class RegistrationScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => OtpScreen(),
@@ -93,12 +102,11 @@ class RegistrationScreen extends StatelessWidget {
                 Text("Do you already have a account?"),
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                      );
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ));
                     },
                     child: Text("Login in here"))
               ],

@@ -92,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                             color: ColorConstant.mykuriWhite,
                             fontWeight: FontWeight.bold,
-                            fontSize: 30),
+                            fontSize: 25),
                       ),
                     ),
                     Positioned(
@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
                                       "5885 Rs",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 23,
+                                          fontSize: 18,
                                           color: ColorConstant.mykuriWhite),
                                     ),
                                   ],
@@ -154,7 +154,7 @@ class HomeScreen extends StatelessWidget {
                                       "5885 Rs",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          fontSize: 23,
+                                          fontSize: 18,
                                           color: ColorConstant.mykuriWhite),
                                     ),
                                   ],
@@ -203,14 +203,14 @@ class HomeScreen extends StatelessWidget {
                               "Wallet",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   color: ColorConstant.mykuriWhite),
                             ),
                             Text(
                               "\$ 40,000",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 30,
+                                  fontSize: 25,
                                   color: ColorConstant.mykuriWhite),
                             ),
                           ],
@@ -266,7 +266,7 @@ class HomeScreen extends StatelessWidget {
                         "Wedding Plan",
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 20,
+                          fontSize: 18,
                         ),
                       ),
                     ],

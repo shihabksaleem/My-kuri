@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
+import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
 import 'package:mykuri/presentation/forgot_password_screen/view/forgot_password.dart';
+import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
 import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -13,9 +15,18 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: ColorConstant.mykuriWhite,
         elevation: 0,
-        leading: Icon(
-          Icons.arrow_back_ios_new_rounded,
-          color: ColorConstant.mykuriTextColor,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => GetStartedScreen(),
+                ));
+          },
+          child: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: ColorConstant.mykuriTextColor,
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -45,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                   Text('Forgot Password ?'),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ForgotPassword(),
@@ -70,12 +81,13 @@ class LoginScreen extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => OtpScreen(),
-                //   ),
-                // );
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BottomNavScreen(),
+                  ),
+                  (route) => false,
+                );
               },
               child: Container(
                 height: 50,
@@ -84,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Text(
-                    "REGISTER",
+                    "LOG IN",
                     style: TextStyle(
                         color: ColorConstant.mykuriWhite,
                         fontWeight: FontWeight.bold),
@@ -98,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                 Text("Do you not have a account?"),
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => RegistrationScreen(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
+import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
 import 'package:mykuri/presentation/terms_and_condirtion_screen.dart/view/widgets/radiobutton_card.dart';
 import 'package:mykuri/presentation/terms_and_condirtion_screen.dart/view/widgets/t&c_data_container.dart';
 
@@ -70,11 +71,12 @@ class _TermsAndCondtionsState extends State<TermsAndCondtions> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: GestureDetector(
           onTap: () {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => TermsAndCondtions(),
-                ));
+                  builder: (context) => BottomNavScreen(),
+                ),
+                (route) => false);
           },
           child: Container(
             height: 50,
