@@ -5,6 +5,5 @@ class ColorConstant {
   static Color mykuriPrimaryBlue = Color(0xff0066F6);
   static Color mykuriOrange = Color(0xffFD9101);
   static Color mykuriGrey = Color(0xff999999);
-  static Color mykuriLiteGrey = Color(0xffE4E4E499).withOpacity(25);
   static Color mykuriTextColor = Color(0xff000000);
 }

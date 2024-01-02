@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
+import 'package:mykuri/presentation/get_started_screen/get_started_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
