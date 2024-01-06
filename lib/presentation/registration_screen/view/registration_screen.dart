@@ -40,13 +40,10 @@ class RegistrationScreen extends StatelessWidget {
                 height: 20,
               ),
               Text('Registration',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: ColorConstant.mykuriPrimaryBlue,
-                      fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 35, color: ColorConstant.mykuriPrimaryBlue, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               Text(
-                'Register ${AppConfig.appName} account with your referral code',
+                'Register ${AppConfig.APP_NAME} account with your referral code',
                 style: TextStyle(height: 1.5),
               ),
               SizedBox(height: 30),
@@ -83,15 +80,12 @@ class RegistrationScreen extends StatelessWidget {
               },
               child: Container(
                 height: 50,
-                decoration: BoxDecoration(
-                    color: ColorConstant.mykuriPrimaryBlue,
-                    borderRadius: BorderRadius.circular(8)),
+                decoration:
+                    BoxDecoration(color: ColorConstant.mykuriPrimaryBlue, borderRadius: BorderRadius.circular(8)),
                 child: Center(
                   child: Text(
                     "REGISTER",
-                    style: TextStyle(
-                        color: ColorConstant.mykuriWhite,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: ColorConstant.mykuriWhite, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),

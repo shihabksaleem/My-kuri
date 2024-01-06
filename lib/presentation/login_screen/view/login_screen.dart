@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
 import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
-import 'package:mykuri/presentation/forgot_password_screen/view/forgot_password.dart';
+import 'package:mykuri/presentation/forgot_password_screen/view/forgot_password_screen.dart';
 import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
+import 'package:mykuri/presentation/login_screen/controllers/login_screen_controller.dart';
 import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
+import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
+    final loginScreenController = Provider.of<LoginScreenController>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstant.mykuriWhite,
@@ -41,22 +52,19 @@ class LoginScreen extends StatelessWidget {
                 height: 20,
               ),
               Text('Log in to your account',
-                  style: TextStyle(
-                      fontSize: 35,
-                      color: ColorConstant.mykuriPrimaryBlue,
-                      fontWeight: FontWeight.bold)),
+                  style: TextStyle(fontSize: 35, color: ColorConstant.mykuriPrimaryBlue, fontWeight: FontWeight.bold)),
               SizedBox(height: 10),
               Text("Log into your My Kuri account"),
               SizedBox(height: 60),
-              RefactoredTextField(name: 'User name/phone number'),
-              RefactoredTextField(name: 'Password'),
+              RefactoredTextField(controller: userNameController, name: 'User name/phone number'),
+              RefactoredTextField(controller: passController, name: 'Password'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text('Forgot Password ?'),
                   TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
+                      onPressed: () async {
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => ForgotPassword(),
@@ -64,9 +72,7 @@ class LoginScreen extends StatelessWidget {
                       },
                       child: Text(
                         "Click here",
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: ColorConstant.mykuriPrimaryBlue),
+                        style: TextStyle(fontSize: 14, color: ColorConstant.mykuriPrimaryBlue),
                       ))
                 ],
               )
@@ -79,31 +85,37 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomNavScreen(),
+            loginScreenController.isLoading
+                ? CircularProgressIndicator()
+                : GestureDetector(
+                    onTap: () async {
+                      await Provider.of<LoginScreenController>(context, listen: false)
+                          .onLogin(
+                              userName: userNameController.text.trim(),
+                              password: passController.text.trim(),
+                              language: Locale('en'))
+                          .then((value) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BottomNavScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      });
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration:
+                          BoxDecoration(color: ColorConstant.mykuriPrimaryBlue, borderRadius: BorderRadius.circular(8)),
+                      child: Center(
+                        child: Text(
+                          "LOG IN",
+                          style: TextStyle(color: ColorConstant.mykuriWhite, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                   ),
-                  (route) => false,
-                );
-              },
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    color: ColorConstant.mykuriPrimaryBlue,
-                    borderRadius: BorderRadius.circular(8)),
-                child: Center(
-                  child: Text(
-                    "LOG IN",
-                    style: TextStyle(
-                        color: ColorConstant.mykuriWhite,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

@@ -4,6 +4,7 @@ import 'package:mykuri/presentation/edit_profile_screen/view/edit_profile_screen
 import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
 
 import 'package:mykuri/presentation/profile_screen/view/widgets/profile_detail_card.dart';
+import 'package:mykuri/repository/helper_functions/helper_functions.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -21,9 +22,7 @@ class ProfileScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(height: 65),
-                Text("Profile",
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
+                Text("Profile", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
                 SizedBox(height: 15),
                 CircleAvatar(
                   radius: 70,
@@ -39,8 +38,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 30,
                 ),
                 // here is the personal information
-                Text("Personal information",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Personal information", style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: 30,
                 ),
@@ -68,8 +66,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 30,
                 ),
                 // here is the Nominee details
-                Text("Nominee details",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Nominee details", style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(
                   height: 30,
                 ),
@@ -102,9 +99,7 @@ class ProfileScreen extends StatelessWidget {
                     height: 40,
                     child: Center(
                         child: Text("EDIT",
-                            style: TextStyle(
-                                color: ColorConstant.mykuriWhite,
-                                fontWeight: FontWeight.bold))),
+                            style: TextStyle(color: ColorConstant.mykuriWhite, fontWeight: FontWeight.bold))),
                     color: ColorConstant.mykuriPrimaryBlue,
                   ),
                 ),
@@ -112,24 +107,16 @@ class ProfileScreen extends StatelessWidget {
                   height: 5,
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                        (route) => false);
+                  onTap: () async {
+                    await HelperFunctions.logOut(context);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 60),
                     height: 40,
                     child: Center(
-                        child: Text("lOG OUT",
-                            style: TextStyle(
-                                color: ColorConstant.mykuriTextColor,
-                                fontWeight: FontWeight.bold))),
-                    decoration:
-                        BoxDecoration(border: Border.all(color: Colors.grey)),
+                        child: Text("LOG OUT",
+                            style: TextStyle(color: ColorConstant.mykuriTextColor, fontWeight: FontWeight.bold))),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
                   ),
                 ),
                 SizedBox(
