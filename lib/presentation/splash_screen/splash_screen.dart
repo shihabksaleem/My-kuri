@@ -16,17 +16,19 @@ class _SplashScreenState extends State<SplashScreen> {
       final token = await AppUtils.getAccessKey();
 
       if (token != null && token.isNotEmpty) {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => BottomNavScreen(),
-            ));
+            ),
+            (route) => false);
       } else {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (context) => GetStartedScreen(),
-            ));
+            ),
+            (route) => false);
       }
     });
     super.initState();

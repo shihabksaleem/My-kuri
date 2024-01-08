@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final loginResModel = loginResModelFromJson(jsonString);
-
-import 'dart:convert';
-
-LoginResModel loginResModelFromJson(String str) => LoginResModel.fromJson(json.decode(str));
-
-String loginResModelToJson(LoginResModel data) => json.encode(data.toJson());
-
 class LoginResModel {
   String? status;
   User? user;
@@ -37,7 +27,7 @@ class LoginResModel {
 }
 
 class User {
-  int? id;
+  num? id;
   String? name;
   String? email;
   dynamic emailVerifiedAt;
@@ -81,15 +71,15 @@ class User {
 }
 
 class Customer {
-  int? id;
-  int? userId;
+  num? id;
+  num? userId;
   String? mobile;
   String? password;
   String? referrelCode;
-  String? aadharNumber;
+  dynamic aadharNumber;
   String? otp;
-  int? isVerified;
-  int? status;
+  num? isVerified;
+  num? status;
   DateTime? createdAt;
   DateTime? updatedAt;
 

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mykuri/presentation/forgot_password_screen/controller/forgot_password_screen_controller.dart';
 import 'package:mykuri/presentation/login_screen/controllers/login_screen_controller.dart';
+import 'package:mykuri/presentation/registration_otp_verification_screen/controller/registration_otp_verification_screen_controller.dart';
+import 'package:mykuri/presentation/registration_screen/controller/registration_screen_controller.dart';
+import 'package:mykuri/presentation/reset_password_screen/controller/reset_password_screen_controller.dart';
 import 'package:mykuri/presentation/splash_screen/controller/common_controller.dart';
 import 'package:mykuri/presentation/splash_screen/splash_screen.dart';
 import 'package:mykuri/presentation/verify_forgot_pass_otp_screen/controller/verify_forgot_pass_otp_screen_controller.dart';
@@ -21,6 +24,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LoginScreenController()),
         ChangeNotifierProvider(create: (context) => ForgotPasswordScreenController()),
         ChangeNotifierProvider(create: (context) => VerifyForgotPassOtpScreenController()),
+        ChangeNotifierProvider(create: (context) => RegistrationScreenController()),
+        ChangeNotifierProvider(create: (context) => RegistrationOtpVerificationScreenController()),
+        ChangeNotifierProvider(create: (context) => ResetPasswordScreenController()),
       ],
       child: MaterialApp(
         navigatorKey: CommonController.navigatorState,

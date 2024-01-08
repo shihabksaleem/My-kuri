@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mykuri/repository/api/forgot_password_screen/models/frogot_pass_otp_verification_res_model.dart';
 
 import '../../../repository/api/forgot_password_screen/service/forgot_password_screen_service.dart';
 
 class VerifyForgotPassOtpScreenController extends ChangeNotifier {
   bool isPostLoading = false;
   bool isResendLoading = false;
+  ForgotPassOtpVerificationResModel? forgotPassVerificationResModel;
 
   Future<bool> resendOtp({required String userName}) async {
     isResendLoading = true;
@@ -34,16 +36,17 @@ class VerifyForgotPassOtpScreenController extends ChangeNotifier {
     }
   }
 
-  Future<bool> verifyOtp({required String OTP}) async {
+  Future<bool> verifyOtp({required String OTP, required String userName}) async {
     isPostLoading = true;
     notifyListeners();
     final response = await ForgotPasswordScreenServices().verifyOtp(
-      body: {"otp": OTP},
+      body: {"otp": OTP, "username": userName},
       language: Locale('en'), // not used
     );
 
     try {
       if (response.error != true) {
+        forgotPassVerificationResModel = response.data;
         isPostLoading = false;
         notifyListeners();
 

@@ -123,13 +123,14 @@ class _VerifForgotPassOtpScreenState extends State<VerifForgotPassOtpScreen> {
                   // Check if the form is valid before navigating
                   if (otpKey.currentState!.validate()) {
                     await Provider.of<VerifyForgotPassOtpScreenController>(context, listen: false)
-                        .verifyOtp(OTP: otpController.text.trim())
+                        .verifyOtp(OTP: otpController.text.trim(), userName: widget.userPhoneNumber)
                         .then((value) {
                       if (value) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ResetPasswordScreen(),
+                            builder: (context) => ResetPasswordScreen(
+                                accessToken: verifyOtpScreenState.forgotPassVerificationResModel?.token),
                           ),
                         );
                       } else {

@@ -5,10 +5,9 @@ class RefactoredTextField extends StatelessWidget {
   const RefactoredTextField({
     super.key,
     required this.name,
-    this.iseye,
     this.hinttext,
     this.controller,
-    this.fromKey,
+    this.formKey,
     this.validator,
     this.keyboardType,
     this.autofocus = false,
@@ -20,7 +19,7 @@ class RefactoredTextField extends StatelessWidget {
     this.inputFormatters,
     this.maxLength,
     this.maxLengthEnforced = true,
-    this.maxLines,
+    this.maxLines = 1,
     this.minLines,
     this.onChanged,
     this.onEditingComplete,
@@ -37,13 +36,15 @@ class RefactoredTextField extends StatelessWidget {
     this.style,
     this.strutStyle,
     this.toolbarOptions,
+    this.obscureText = false,
+    this.suffix,
   });
 
   final String name;
   final String? hinttext;
-  final bool? iseye;
+
   final TextEditingController? controller;
-  final Key? fromKey;
+  final Key? formKey;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final bool autofocus;
@@ -72,6 +73,8 @@ class RefactoredTextField extends StatelessWidget {
   final TextStyle? style;
   final StrutStyle? strutStyle;
   final ToolbarOptions? toolbarOptions;
+  final bool obscureText;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -86,21 +89,20 @@ class RefactoredTextField extends StatelessWidget {
         SizedBox(height: 10),
         SizedBox(
           child: Form(
-            key: fromKey,
+            key: formKey,
             child: TextFormField(
               autofocus: autofocus,
               keyboardType: keyboardType,
               controller: controller,
-              obscureText: iseye == true ? true : false,
-              decoration: decoration ??
-                  InputDecoration(
-                    labelText: hinttext ?? name,
-                    hintText: hinttext ?? name,
-                    border: OutlineInputBorder(),
-                    suffixIcon: iseye == true ? Icon(Icons.remove_red_eye) : SizedBox(),
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
-                  ),
+              obscureText: obscureText,
+              decoration: InputDecoration(
+                labelText: hinttext ?? name,
+                hintText: hinttext ?? name,
+                border: OutlineInputBorder(),
+                suffixIcon: suffix,
+                isDense: true,
+                contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              ),
               validator: validator,
               autovalidateMode: autovalidateMode,
               enabled: enabled,

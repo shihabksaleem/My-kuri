@@ -45,28 +45,27 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(height: 30),
               RefactoredTextField(
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(
-                    RegExp(r'^[0-9+#*]+$'),
-                  ),
+                  FilteringTextInputFormatter.allow(RegExp(r'[\w@.#+*-]')),
                 ],
-                fromKey: phKey,
-                name: 'Phone number',
+                formKey: phKey,
+                name: 'Phone number or Email',
                 controller: phController,
-                keyboardType: TextInputType.phone,
+                keyboardType: TextInputType.text,
                 validator: (value) {
-                  // Define a regex pattern for a valid phone number
-                  final phoneRegex = RegExp(r'^[0-9]+$');
+                  final phoneRegex = RegExp(r'^[0-9+#*-]+$');
+                  final emailRegex = RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
 
-                  if (phController.text.isEmpty) {
-                    return 'Phone number cannot be empty';
-                  } else if (!phoneRegex.hasMatch(phController.text.trim())) {
-                    return 'Enter a valid 10-digit phone number';
+                  final inputText = phController.text.trim();
+
+                  if (inputText.isEmpty) {
+                    return 'Phone number or email cannot be empty';
+                  } else if (!phoneRegex.hasMatch(inputText) && !emailRegex.hasMatch(inputText)) {
+                    return 'Enter a valid phone number or a valid email address';
                   }
 
-                  // Return null if the input is valid
                   return null;
                 },
-              ),
+              )
             ],
           ),
         ),
@@ -89,7 +88,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         .sendOtp(userName: phController.text.trim())
                         .then((value) {
                       if (value) {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => VerifForgotPassOtpScreen(userPhoneNumber: phController.text.trim()),

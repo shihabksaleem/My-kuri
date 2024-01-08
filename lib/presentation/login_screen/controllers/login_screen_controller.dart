@@ -9,6 +9,7 @@ import 'package:mykuri/repository/api/loign_screen/service/login_screen_service.
 class LoginScreenController extends ChangeNotifier {
   bool isLogged = false;
   bool isLoading = false;
+  bool isPassObscure = true;
 
   LoginResModel? loginData;
   // Create storage
@@ -21,10 +22,10 @@ class LoginScreenController extends ChangeNotifier {
 
     try {
       // need to update values from  user input
-      final fetchedData =
+      final response =
           await LoginScreenServices().onLogin(body: {"username": userName, "password": password}, language: language);
-      if (fetchedData.error != true) {
-        loginData = fetchedData.data;
+      if (response.error != true) {
+        loginData = response.data;
 
         if (loginData != null) {
           Map<String, dynamic> sharedData = {
@@ -54,5 +55,11 @@ class LoginScreenController extends ChangeNotifier {
       print(e);
       return false;
     }
+  }
+
+  // change visibility of password
+  changePassVisibility() {
+    isPassObscure = !isPassObscure;
+    notifyListeners();
   }
 }

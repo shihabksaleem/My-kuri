@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mykuri/core/constant/color_constant.dart';
+import 'package:mykuri/global_widgets/reusable_loading_widget.dart';
 import 'package:mykuri/global_widgets/textfield_refactor.dart';
 import 'package:mykuri/presentation/bottom_nav_screen/view/bottom_nav_screen.dart';
 import 'package:mykuri/presentation/forgot_password_screen/view/forgot_password_screen.dart';
 import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
 import 'package:mykuri/presentation/login_screen/controllers/login_screen_controller.dart';
+import 'package:mykuri/presentation/registration_otp_verification_screen/view/registration_otp_verification_screen.dart';
 import 'package:mykuri/presentation/registration_screen/view/registration_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -57,7 +59,20 @@ class _LoginScreenState extends State<LoginScreen> {
               Text("Log into your My Kuri account"),
               SizedBox(height: 60),
               RefactoredTextField(controller: userNameController, name: 'User name/phone number'),
-              RefactoredTextField(controller: passController, name: 'Password'),
+              RefactoredTextField(
+                controller: passController,
+                name: 'Password',
+                obscureText: loginScreenController.isPassObscure,
+                suffix: GestureDetector(
+                  onTap: () {
+                    Provider.of<LoginScreenController>(context, listen: false).changePassVisibility();
+                  },
+                  child: Icon(
+                    loginScreenController.isPassObscure ? Icons.visibility : Icons.visibility_off,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -86,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             loginScreenController.isLoading
-                ? CircularProgressIndicator()
+                ? ReusableLoadingWidget()
                 : GestureDetector(
                     onTap: () async {
                       await Provider.of<LoginScreenController>(context, listen: false)
@@ -95,13 +110,23 @@ class _LoginScreenState extends State<LoginScreen> {
                               password: passController.text.trim(),
                               language: Locale('en'))
                           .then((value) {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BottomNavScreen(),
-                          ),
-                          (route) => false,
-                        );
+                        if (value) {
+                          loginScreenController.loginData?.user?.customer?.isVerified == 1
+                              ? Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => BottomNavScreen(),
+                                  ),
+                                  (route) => false,
+                                )
+                              : Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        RegistartionOtpVerificationScreen(phNumber: userNameController.text.trim()),
+                                  ),
+                                );
+                        }
                       });
                     },
                     child: Container(

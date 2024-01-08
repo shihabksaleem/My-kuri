@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:mykuri/presentation/get_started_screen/view/get_started_screen.dart';
-import 'package:mykuri/presentation/login_screen/view/login_screen.dart';
 
 class HelperFunctions {
   static Future<void> logOut(BuildContext context) async {

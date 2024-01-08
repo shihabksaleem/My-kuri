@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:mykuri/repository/api/forgot_password_screen/models/frogot_pass_otp_verification_res_model.dart';
 import 'package:mykuri/repository/helper/api_response.dart';
 
 import '../../../helper/api_helper.dart';
@@ -20,7 +21,8 @@ class ForgotPasswordScreenServices {
     if (response.error) {
       return response;
     } else {
-      return APIResponse(data: "redData", error: false, errorMessage: '');
+      ForgotPassOtpVerificationResModel redData = ForgotPassOtpVerificationResModel.fromJson(response.data);
+      return APIResponse(data: redData, error: false, errorMessage: '');
     }
   }
 }
